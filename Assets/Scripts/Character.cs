@@ -52,8 +52,12 @@ public class Character : MonoBehaviour
     }
     
     private bool IsGrounded() {
-        var hit = Physics2D.Raycast(transform.position-new Vector3(0,0.75f), Vector2.down, 0.3f);
-        return (hit && hit.collider.gameObject.CompareTag("Platform"));
+        var hit = Physics2D.RaycastAll(transform.position-new Vector3(0,0.75f), Vector2.down, 0.3f);
+        foreach (var raycastHit2D in hit)
+        {
+            if (raycastHit2D.collider.gameObject.CompareTag("Platform")) return true;
+        }
+        return false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
