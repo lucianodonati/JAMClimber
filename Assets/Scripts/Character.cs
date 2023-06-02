@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,17 +31,25 @@ public class Character : MonoBehaviour
     public void Move(float directionInX)
     {
         currentX = directionInX;
-        
-        transform.position += new Vector3(directionInX * speed * Time.deltaTime, 0 , 0);
+    }
+
+    private void FixedUpdate()
+    {
+        transform.position += new Vector3(currentX * speed * Time.deltaTime, 0 , 0);
     }
 
     public void OnJump(InputAction.CallbackContext value)
     {
-        if (value.started) Jump();
+        if (value.started && IsGrounded()) Jump();
     }
 
     public void OnMove(InputAction.CallbackContext value)
     {
         Move( value.ReadValue<float>());
+    }
+    
+    private bool IsGrounded()
+    {
+        return false;
     }
 }
