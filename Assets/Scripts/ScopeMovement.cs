@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class ScopeMovement : MonoBehaviour
 {
-    public float speed = 5;
+    public float speed = 1;
 
     public AnimationCurve toFinalVelocityCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     public float          timeToFinalVelocity  = 1;
-    public float          intialFinalHeight    = 3;
+    public float          intialFinalHeight    = -2;
 
     private IEnumerator Start()
     {
         yield return StartCoroutine(ReachFinalVelocityRoutine());
+        yield return new WaitForSeconds(3);
         StartCoroutine(ClimbRoutine());
     }
 
@@ -22,33 +23,33 @@ public class ScopeMovement : MonoBehaviour
 
         do
         {
-            var ratio = toFinalVelocityCurve.Evaluate(timeElapsed);
+            var ratio = toFinalVelocityCurve.Evaluate(timeElapsed / timeToFinalVelocity);
+
+            var finalY = Mathf.Lerp(originalPosition.y, intialFinalHeight, ratio);
             
             transform.position = new Vector3(
-                originalPosition.x, 
-                originalPosition.y + ratio * intialFinalHeight,
+                originalPosition.x,
+                finalY,
                 originalPosition.z);
             
-            timeElapsed += Time.smoothDeltaTime;
+            timeElapsed += Time.deltaTime;
             yield return null;
         } while (timeElapsed <= timeToFinalVelocity);
-        
+
         transform.position = new Vector3(
-            originalPosition.x, 
-            originalPosition.y + intialFinalHeight,
+            originalPosition.x,
+            intialFinalHeight,
             originalPosition.z);
     }
     
     private IEnumerator ClimbRoutine()
     {
-        var   originalPosition = transform.position;
-
         do
         {
-            transform.position = new Vector3(
-                originalPosition.x, 
-                originalPosition.y + intialFinalHeight + speed * Time.smoothDeltaTime,
-                originalPosition.z);
+            transform.position += new Vector3(
+                0,
+                speed * Time.deltaTime,
+                0);
             yield return null;
         } while (true);
     }
