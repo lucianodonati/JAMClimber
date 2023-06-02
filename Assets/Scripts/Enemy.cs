@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
     
     [SerializeField]
     private SpriteRenderer sr;
+    
+    [SerializeField]
+    private Collider2D col;
 
     private void OnValidate()
     {
@@ -25,53 +28,26 @@ public class Enemy : MonoBehaviour
         {
             sr = GetComponent<SpriteRenderer>();
         }
+        if (null == col)
+        {
+            col = GetComponent<Collider2D>();
+        }
     }
 
-    public void PopOut(bool left)
+    public void PopIn(bool left)
     {
-        isLeft = left;
-        StartCoroutine(PopOutRoutine());
-    }
-
-    private IEnumerator PopOutRoutine()
-    {
+        col.enabled = true;
+        isLeft      = left;
+        sr.enabled  = true;
         sr.sprite = isLeft
             ? leftSprites[Random.Range(0,  leftSprites.Length)]
             : rightSprites[Random.Range(0, rightSprites.Length)];
-
-        sr.enabled = true;
-        
-        yield return new WaitForSeconds(Random.Range(PopOutEveryRange.x, PopOutEveryRange.y));
-
-        float timeElapsed = 0;
-
-        var start = new Vector3(
-            transform.position.x + (isLeft ? 1 : -1) * offsetX,
-            transform.position.y,
-            transform.position.z);
-        var end = new Vector3(
-            start.x + (isLeft ? 1 : -1) * offsetX,
-            start.y,
-            start.z);
-
-        do
-        {
-            transform.localPosition =  Vector3.Lerp(start, end, timeElapsed / timeToComeOut);
-            timeElapsed             += Time.deltaTime;
-        } while (timeElapsed <= timeToComeOut);
-
-        yield return new WaitForSeconds(Random.Range(StayOutRange.x, StayOutRange.y));
-
-        start = transform.localPosition;
-        end = new Vector3(
-            start.x + (isLeft ? -1 : 1) * offsetX,
-            start.y,
-            start.z);
-
-        do
-        {
-            transform.localPosition =  Vector3.Lerp(start, end, timeElapsed / timeToComeOut);
-            timeElapsed             += Time.deltaTime;
-        } while (timeElapsed <= timeToComeOut);
     }
+    
+    public void PopOut()
+    {
+        col.enabled = false;
+        sr.enabled  = false;
+    }
+
 }

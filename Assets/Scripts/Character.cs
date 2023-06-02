@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -60,11 +61,8 @@ public class Character : MonoBehaviour
         return false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnBecameInvisible()
     {
-        if (isP1)
-        {
-            throw new NotImplementedException();
-        }
+        GameManager.Instance.Lose(isP1);
     }
 }

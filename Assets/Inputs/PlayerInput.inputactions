@@ -125,11 +125,6 @@
                     "devicePath": "<Gamepad>",
                     "isOptional": true,
                     "isOR": false
-                },
-                {
-                    "devicePath": "<Keyboard>",
-                    "isOptional": true,
-                    "isOR": false
                 }
             ]
         }

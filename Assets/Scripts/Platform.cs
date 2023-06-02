@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -9,8 +7,21 @@ public class Platform : MonoBehaviour
 
     public Enemy enemy;
 
-    private void OnBecameVisible()
+    private IEnumerator Start()
     {
-        enemy.PopOut(IsLeft);
+
+        enemy = GetComponentInChildren<Enemy>();
+        
+        while (true)
+        {
+            if (Random.value < .4f)
+            {
+                enemy.PopIn(IsLeft);
+                yield return new WaitForSeconds(4);
+                enemy.PopOut();
+                yield return new WaitForSeconds(4);
+            }
+            yield return new WaitForSeconds(4);
+        }
     }
 }
