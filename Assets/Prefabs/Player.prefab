@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2495837595711603726}
   speed: 10
-  jumpForce: 25
+  jumpForce: 20
 --- !u!114 &4963591950441404127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,8 +225,17 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.96860987
-        value: 0.073684216
+        time: 0.5724039
+        value: 0.39480734
+        inSlope: -1.232131
+        outSlope: -1.232131
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.5215313
+      - serializedVersion: 3
+        time: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0

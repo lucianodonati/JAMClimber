@@ -7,6 +7,8 @@ public class Character : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D rb;
+    [SerializeField]
+    private GameObject dustPrefab;
 
     
     public float speed = 1;
@@ -23,12 +25,14 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void Jump()
+    private void Jump()
     {
         rb.AddForce(new Vector2(currentX, jumpForce), ForceMode2D.Impulse);
+        GameObject dust = Instantiate(dustPrefab);
+        dust.transform.position = transform.position - new Vector3(0,0.5f);
     }
 
-    public void Move(float directionInX)
+    private void Move(float directionInX)
     {
         currentX = directionInX;
     }
@@ -48,8 +52,8 @@ public class Character : MonoBehaviour
         Move( value.ReadValue<float>());
     }
     
-    private bool IsGrounded()
-    {
-        return false;
+    private bool IsGrounded() {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position-new Vector3(0,0.51f), Vector2.down, 0.3f);
+        return (hit && hit.collider.gameObject.CompareTag("Platform"));
     }
 }
