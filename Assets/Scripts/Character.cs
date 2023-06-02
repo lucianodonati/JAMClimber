@@ -53,7 +53,7 @@ public class Character : MonoBehaviour
     }
     
     private bool IsGrounded() {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position-new Vector3(0,0.51f), Vector2.down, 0.3f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position-new Vector3(0,transform.localScale.y/2), Vector2.down, 0.3f);
         return (hit && hit.collider.gameObject.CompareTag("Platform"));
     }
 }
