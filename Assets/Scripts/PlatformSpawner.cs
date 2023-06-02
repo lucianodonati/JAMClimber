@@ -21,6 +21,9 @@ public class PlatformSpawner : MonoBehaviour
             GameObject platform = Instantiate(platformPrefab);
             if (_left) platform.transform.position = new Vector3(-xOffset, yOffset * i);
             else platform.transform.position = new Vector3(xOffset, yOffset * i);
+            
+            platform.GetComponent<Platform>().IsLeft = _left;
+
             _spawnedPlatformsOffset.Add(_left);
 
             if (i >= 2 && _spawnedPlatformsOffset[i - 1] == _spawnedPlatformsOffset[i])

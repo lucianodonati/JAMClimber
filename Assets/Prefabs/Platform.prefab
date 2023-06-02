@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3976472551207018438}
   - component: {fileID: 3976472551207018439}
   - component: {fileID: 3976472551207018436}
+  - component: {fileID: -5392751773045051493}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Platform
@@ -127,7 +128,20 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 127.71
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &-5392751773045051493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976472551207018441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c53e996f7e705d468990e2fde86f83b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsLeft: 0
