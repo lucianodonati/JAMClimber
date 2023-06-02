@@ -10,11 +10,10 @@ public class Character : MonoBehaviour
     [SerializeField]
     private GameObject dustPrefab;
 
-    
-    public float speed = 1;
+    public float speed     = 1;
     public float jumpForce = 1;
-
-
+    public bool  isP1;
+    
     private float currentX = 0;
 
     private void OnValidate()
@@ -53,7 +52,15 @@ public class Character : MonoBehaviour
     }
     
     private bool IsGrounded() {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position-new Vector3(0,0.75f), Vector2.down, 0.3f);
+        var hit = Physics2D.Raycast(transform.position-new Vector3(0,0.75f), Vector2.down, 0.3f);
         return (hit && hit.collider.gameObject.CompareTag("Platform"));
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (isP1)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
