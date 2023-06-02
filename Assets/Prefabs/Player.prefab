@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4963591950441404115}
   - component: {fileID: 2495837595711603726}
   - component: {fileID: 5613404266752273137}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,8 +102,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2495837595711603726}
+  dustPrefab: {fileID: 0}
   speed: 10
   jumpForce: 20
+  isP1: 0
 --- !u!114 &4963591950441404127
 MonoBehaviour:
   m_ObjectHideFlags: 0
